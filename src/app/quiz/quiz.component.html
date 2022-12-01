@@ -1,0 +1,30 @@
+<div class="container">
+    <!-- <ngb-toast
+    class="toastClass toast-container position-fixed top-0 end-0 p-3"
+	*ngIf="show"
+	header="Autohide can be cancelled"
+	[delay]="5000"
+	[autohide]="autohide"
+	(mouseenter)="autohide = false"
+	(mouseleave)="autohide = true"
+	(hide)="show = false; autohide = true"
+	[class.bg-warning]="!autohide"
+>
+	<div *ngIf="autohide">Try to mouse hover me.</div>
+	<div *ngIf="!autohide">I will remain visible until you leave again.</div>
+</ngb-toast> -->
+<app-toast-container class="toast-container position-fixed top-0 end-0 p-3"></app-toast-container>
+    <div class="scoreBoard">your score is {{setScores}}</div>
+    <form class="formBox" [formGroup]="quizForm" (ngSubmit)="submit()">
+        <div for="question">{{quiz[setQuestionIndex].question}}</div>
+        <label for="answers"> please select your answer</label>
+        <div *ngFor="let q of quiz[setQuestionIndex].answers;let i=index">
+           
+                <input [id]="i" type="radio" [value]="i" formControlName="answer">
+                <label [for]="i">{{q}}</label>
+            
+        </div>
+        <button type="submit" [disabled]="!quizForm.valid" >submit</button>
+        <button type="button" (click)="resetQuiz()">reset</button>
+    </form>
+</div>
